@@ -35,33 +35,17 @@ public class ProductService {
         return products;
     }
 
-    public List<Product> addSupplierIntoProduct(Integer idCamp, Integer idTeam, Integer pontos) {
-        Product camp = products.get(idCamp);
-        Supplier time = tService.getById(idTeam);
-//        Stock p = new Stock(time, pontos);
-//        List<Stock> lista = camp.getPontuacao();
-//        lista.add(p);
+    public List<Product> addSupplierIntoProduct(Integer idProduct, Integer idSupplier, Integer qtd) {
+        Product product = products.get(idProduct);
+        Supplier supplier = tService.getById(idSupplier);
+        Stock products = new Stock(supplier, qtd);
+        List<Stock> list = product.getQuantityAvailable();
+        list.add(products);
         return products;
     }
 
     public Product getSuppliersByProduct(Integer id) {
         return products.get(id);
     }
-
-//    public Product getRankByProduct(Integer id) {
-//        Product camp = products.get(id);
-//        List<Stock> lista = camp.getPontuacao();
-//        lista.sort(Comparator.comparing(Stock::getQuantity).reversed());
-//        return products.get(id);
-//    }
-
-//    public Product removeSupplierFromProduct(Integer id, Integer idPositionTeam) {
-//        Product camp = products.get(id);
-//        List<Stock> lista = camp.getPontuacao();
-//        Stock p = new Stock();
-//        p = lista.get(idPositionTeam);
-//        lista.remove(p);
-//        return products.get(id);
-//    }
 
 }

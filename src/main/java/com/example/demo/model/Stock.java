@@ -4,15 +4,13 @@ public class Stock {
 
     Supplier supplier = new Supplier();
     Integer quantity;
-    String reference;
 
     public Stock() {
     }
 
-    public Stock(Supplier supplier, Integer quantity, String reference) {
+    public Stock(Supplier supplier, Integer quantity) {
         this.supplier = supplier;
         this.quantity = quantity;
-        this.reference = reference;
     }
 
     public Supplier getSupplier() {
@@ -31,12 +29,5 @@ public class Stock {
         this.quantity = quantity;
     }
 
-    public String getReference() {
-        return reference;
-    }
-
-    public void setReference(String reference) {
-        this.reference = reference;
-    }
 }
 

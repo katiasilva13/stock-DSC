@@ -8,8 +8,6 @@ public class Product {
     String name;
     Float quantityAvailable;
 
-  //  List<Supplier> times = new ArrayList<>();
-
     List<Stock> stock = new ArrayList<>();
 
     public Product() {

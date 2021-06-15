@@ -14,23 +14,23 @@ public class SupplierAPI {
     @Autowired
     private SupplierService tService;
 
-    @GetMapping("/times")
-    public List<Supplier> listTeams(@RequestBody Map<String, String> json) {
+    @GetMapping("/suppliers")
+    public List<Supplier> getAll(@RequestBody Map<String, String> json) {
            return tService.getAll();
     }
 
-    @PostMapping("/times")
-    public String createTeam(@RequestBody Map<String, String> json) {
+    @PostMapping("/suppliers")
+    public String add(@RequestBody Map<String, String> json) {
         return tService.add(json.get("name"));
     }
 
-    @GetMapping("/times/{id}")
-    public Supplier getTeamById(@PathVariable Integer id) {
+    @GetMapping("/suppliers/{id}")
+    public Supplier getById(@PathVariable Integer id) {
         return tService.getById(id);
     }
 
-    @DeleteMapping("/times/{id}")
-    public List<Supplier> deleteTeam(@PathVariable Integer id) {
+    @DeleteMapping("/suppliers/{id}")
+    public List<Supplier> delete(@PathVariable Integer id) {
         return tService.delete(id);
     }
 

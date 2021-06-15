@@ -13,35 +13,36 @@ public class ProductAPI {
 
 
     @Autowired
-    private ProductService cService;
+    private ProductService service;
 
-    @GetMapping("/campeonatos")
+    @GetMapping("/products")
     public List<Product> listCamps(@RequestBody Map<String, String> json) {
-        return cService.getAll();
+        return service.getAll();
     }
 
-//    @PostMapping("/campeonatos")
-//    public String createCamp(@RequestBody Map<String, String> json) {
-//        return cService.add(json.get("name"), json.get("startDate"), json.get("endDate"));
-//    }
+   @PostMapping("/products")
+   public String add(@RequestBody Map<String, String> json) {
+       return service.add(json.get("name"), json.get("qtd"));
+   }
 
-    @GetMapping("/campeonatos/{id}")
-    public Product getCampById(@PathVariable Integer id) {
-        return cService.getById(id);
+    @GetMapping("/products/{id}")
+    public Product getById(@PathVariable Integer id) {
+        return service.getById(id);
     }
 
-    @DeleteMapping("/campeonatos/{id}")
-    public List<Product> deleteCamp(@PathVariable Integer id) {
-        return cService.delete(id);
+    @DeleteMapping("/products/{id}")
+    public List<Product> delete(@PathVariable Integer id) {
+        return service.delete(id);
     }
 
-    @PostMapping("/campeonatos/times")
-    public List<Product> addTeamInCamp(@RequestBody Map<String, Integer> json) {
-        return cService.addSupplierIntoProduct(json.get("idCamp"), json.get("idTeam"), json.get("pontos"));
+    @PostMapping("/products/suppliers")
+    public List<Product> addSupplierIntoProduct(@RequestBody Map<String, Integer> json) {
+        return service.addSupplierIntoProduct(json.get("idProduct"), 
+        json.get("idSupplier"), json.get("qtd"));
     }
 
-    @GetMapping("/campeonatos/times/{id}")
-    public Product getTeamsByCamp(@PathVariable Integer id) {
+    @GetMapping("/products/{id}/Suppliers")
+    public Product getSuppliersByProduct(@PathVariable Integer id) {
         return cService.getSuppliersByProduct(id);
     }
 
