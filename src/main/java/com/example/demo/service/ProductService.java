@@ -12,15 +12,15 @@ import java.util.*;
 public class ProductService {
 
     @Autowired
-    private SupplierService tService;
+    private SupplierService supplierService;
 
     Map<String, List<Supplier>> suppliers = new HashMap<>();
     List<Product> products = new ArrayList<>();
 
-    public String add(String name, String qtd) {
-        Float quantity = Float.valueOf(qtd);
+    public Product add(String name, String qtd) {
+        Integer quantity = Integer.valueOf(qtd);
         products.add(new Product(name, quantity));
-        return products.get(products.size() - 1).getName();
+        return products.get(products.size() - 1);
     }
 
     public List<Product> getAll() {
@@ -38,7 +38,7 @@ public class ProductService {
 
     public List<Stock> addSupplierIntoProduct(Integer idProduct, Integer idSupplier, Integer qtd) {
         Product product = products.get(idProduct);
-        Supplier supplier = tService.getById(idSupplier);
+        Supplier supplier = supplierService.getById(idSupplier);
         Stock stockItem = new Stock(supplier, qtd);
         List<Stock> list = product.getStock();
         list.add(stockItem);

@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.model.Product;
 import com.example.demo.model.Supplier;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,19 +15,19 @@ class SupplierServiceTest {
     @Autowired
     private SupplierService service;
 
-    List<Supplier> suppliers = new ArrayList<>();
-
+    @Test
     void deleteAll() {
+        List<Supplier> suppliers = service.getAll();
         for (Supplier item: suppliers
         ) {
             service.delete(suppliers.indexOf(item));
         }
+        Assertions.assertEquals(0, service.getAll().size());
     }
 
     @Test
     @DisplayName("Supplier list null/empty")
     void getAllEmpty() {
-        deleteAll();
         Assertions.assertEquals(new ArrayList<>(), service.getAll());
     }
 
@@ -40,20 +41,15 @@ class SupplierServiceTest {
     @Test
     @DisplayName("Supplier get list success")
     void getAllSuccess() {
-        deleteAll();
-        List<Supplier> suppliers = new ArrayList<>();
-        Supplier j = service.add("JORGE");
-        Supplier m = service.add("MARIANA");
-        suppliers.add(j);
-        suppliers.add(m);
+        service.add("JORGE");
+        service.add("MARIANA");
         Assertions.assertEquals(2, service.getAll().size());
     }
 
 
     @Test
     void getById() {
-        deleteAll();
-        Supplier m = service.add("MARIANA");
+        service.add("MARIANA");
         Assertions.assertEquals("MARIANA", service.getById(0).getName());
     }
 

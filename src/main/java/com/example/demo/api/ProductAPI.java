@@ -21,7 +21,7 @@ public class ProductAPI {
     }
 
     @PostMapping("/products")
-    public String add(@RequestBody Map<String, String> json) {
+    public Product add(@RequestBody Map<String, String> json) {
         return service.add(json.get("name"), json.get("qtd"));
     }
 

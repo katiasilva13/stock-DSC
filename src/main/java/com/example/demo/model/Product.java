@@ -6,19 +6,19 @@ import java.util.List;
 
 public class Product {
     String name;
-    Float quantityAvailable;
+    Integer quantityAvailable;
 
     List<Stock> stock = new ArrayList<>();
 
     public Product() {
     }
 
-    public Product(String name, Float quantityAvailable) {
+    public Product(String name, Integer quantityAvailable) {
         this.name = name;
         this.quantityAvailable = quantityAvailable;
     }
 
-    public Product(String name, Float quantityAvailable, List<Stock> stock) {
+    public Product(String name, Integer quantityAvailable, List<Stock> stock) {
         this.name = name;
         this.quantityAvailable = quantityAvailable;
         this.stock = stock;
@@ -32,11 +32,11 @@ public class Product {
         this.name = name;
     }
 
-    public Float getQuantityAvailable() {
+    public Integer getQuantityAvailable() {
         return quantityAvailable;
     }
 
-    public void setQuantityAvailable(Float quantityAvailable) {
+    public void setQuantityAvailable(Integer quantityAvailable) {
         this.quantityAvailable = quantityAvailable;
     }
 
