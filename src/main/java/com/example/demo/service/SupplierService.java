@@ -15,10 +15,10 @@ public class SupplierService {
         return suppliers;
     }
 
-   public String add(String name){
-    suppliers.add(new Supplier(name));
-       return times.get(times.size()-1).getName();
-   }
+    public Supplier add(String name){
+     suppliers.add(new Supplier(name));
+        return suppliers.get(suppliers.size()-1);
+    }
 
     public Supplier getById(Integer id) {
         return suppliers.get(id);

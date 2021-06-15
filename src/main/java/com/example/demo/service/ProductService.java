@@ -17,8 +17,9 @@ public class ProductService {
     Map<String, List<Supplier>> suppliers = new HashMap<>();
     List<Product> products = new ArrayList<>();
 
-    public String add(String name, Float qtd) {
-        products.add(new Product(name, qtd));
+    public String add(String name, String qtd) {
+        Float quantity = Float.valueOf(qtd);
+        products.add(new Product(name, quantity));
         return products.get(products.size() - 1).getName();
     }
 
@@ -35,13 +36,13 @@ public class ProductService {
         return products;
     }
 
-    public List<Product> addSupplierIntoProduct(Integer idProduct, Integer idSupplier, Integer qtd) {
+    public List<Stock> addSupplierIntoProduct(Integer idProduct, Integer idSupplier, Integer qtd) {
         Product product = products.get(idProduct);
         Supplier supplier = tService.getById(idSupplier);
-        Stock products = new Stock(supplier, qtd);
-        List<Stock> list = product.getQuantityAvailable();
-        list.add(products);
-        return products;
+        Stock stockItem = new Stock(supplier, qtd);
+        List<Stock> list = product.getStock();
+        list.add(stockItem);
+        return list;
     }
 
     public Product getSuppliersByProduct(Integer id) {

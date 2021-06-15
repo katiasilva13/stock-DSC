@@ -12,26 +12,26 @@ import java.util.Map;
 public class SupplierAPI {
 
     @Autowired
-    private SupplierService tService;
+    private SupplierService service;
 
     @GetMapping("/suppliers")
     public List<Supplier> getAll(@RequestBody Map<String, String> json) {
-           return tService.getAll();
+           return service.getAll();
     }
 
     @PostMapping("/suppliers")
-    public String add(@RequestBody Map<String, String> json) {
-        return tService.add(json.get("name"));
+    public Supplier add(@RequestBody Map<String, String> json) {
+        return service.add(json.get("name"));
     }
 
     @GetMapping("/suppliers/{id}")
     public Supplier getById(@PathVariable Integer id) {
-        return tService.getById(id);
+        return service.getById(id);
     }
 
     @DeleteMapping("/suppliers/{id}")
     public List<Supplier> delete(@PathVariable Integer id) {
-        return tService.delete(id);
+        return service.delete(id);
     }
 
 }
