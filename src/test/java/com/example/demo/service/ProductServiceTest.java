@@ -4,7 +4,6 @@ import com.example.demo.model.Product;
 import com.example.demo.model.Stock;
 import com.example.demo.model.Supplier;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +11,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class ProductServiceTest {
 
@@ -51,6 +48,7 @@ class ProductServiceTest {
         service.add("AMORA", "25");
         Assertions.assertEquals("AMORA", service.getById(0).getName());
     }
+
     @Test
     @DisplayName("Product list null/empty")
     void getAllEmpty() {
@@ -61,12 +59,15 @@ class ProductServiceTest {
     void addSupplierIntoProduct() {
         Product product = service.add("AMORA", "25");
         Supplier supplier = supplierService.add("JORGE");
-        Stock stockItem = new Stock(supplier, 3);
-        List<Stock> list = product.getStock();
-        list.add(stockItem);
+        service.addSupplierIntoProduct(0,0, 3);
+        Assertions.assertEquals("JORGE", service.getById(0).getStock().get(0).getSupplier().getName());
     }
 
     @Test
-    void getSuppliersByProduct() {
+    void getStockByProduct() {
+        Product product = service.add("AMORA", "25");
+        Supplier supplier = supplierService.add("JORGE");
+        List<Stock> stock = service.addSupplierIntoProduct(0,0, 3);
+        Assertions.assertEquals(stock, service.getStockByProduct(0));
     }
 }

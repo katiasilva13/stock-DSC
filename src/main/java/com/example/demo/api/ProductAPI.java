@@ -42,8 +42,8 @@ public class ProductAPI {
     }
 
     @GetMapping("/products/{id}/suppliers")
-    public Product getSuppliersByProduct(@PathVariable Integer id) {
-        return service.getSuppliersByProduct(id);
+    public List<Stock> getSuppliersByProduct(@PathVariable Integer id) {
+        return service.getStockByProduct(id);
     }
 
 

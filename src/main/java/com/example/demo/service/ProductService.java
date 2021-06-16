@@ -45,8 +45,8 @@ public class ProductService {
         return list;
     }
 
-    public Product getSuppliersByProduct(Integer id) {
-        return products.get(id);
+    public List<Stock> getStockByProduct(Integer id) {
+        return products.get(id).getStock();
     }
 
 }
